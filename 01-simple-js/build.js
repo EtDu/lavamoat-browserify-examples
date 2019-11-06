@@ -2,12 +2,13 @@ const fs = require('fs')
 const browserify = require('browserify')
 
 // configure LavaMoat
-const lavamoatOpts = {
-  config: './lavamoat-config.json',
-}
+const lavamoatOpts = {}
+
 // enable config autogen if specified
 if (process.env.AUTOCONFIG) {
   lavamoatOpts.writeAutoConfig = './lavamoat-config.json'
+} else {
+  lavamoatOpts.config = './lavamoat-config.json'
 }
 
 // configure browserify
