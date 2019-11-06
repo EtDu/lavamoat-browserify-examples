@@ -5,4 +5,4 @@ Examples for [`lavamoat-browserify`](https://github.com/lavamoat/lavamoat-browse
 ### index of examples
 
 - [basic cli usage](https://github.com/LavaMoat/lavamoat-browserify-examples/tree/master/00-simple-cli)
-- [basic js usage](https://github.com/LavaMoat/lavamoat-browserify-examples/tree/master/00-simple-js)
+- [basic js usage](https://github.com/LavaMoat/lavamoat-browserify-examples/tree/master/01-simple-js)
