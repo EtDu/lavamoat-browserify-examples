@@ -7,16 +7,12 @@
     },
     "metamask-logo": {
       "globals": {
-        "acceleration": "write",
         "addEventListener": true,
         "document.body.appendChild": true,
         "document.createElementNS": true,
-        "event.beta": true,
-        "event.gamma": true,
         "innerHeight": true,
         "innerWidth": true,
-        "requestAnimationFrame": true,
-        "yOffset": "write"
+        "requestAnimationFrame": true
       },
       "packages": {
         "gl-mat4": true,

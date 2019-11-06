@@ -4155,16 +4155,12 @@ function makePrepareRealmGlobalFromConfig () {
     },
     "metamask-logo": {
       "globals": {
-        "acceleration": "write",
         "addEventListener": true,
         "document.body.appendChild": true,
         "document.createElementNS": true,
-        "event.beta": true,
-        "event.gamma": true,
         "innerHeight": true,
         "innerWidth": true,
-        "requestAnimationFrame": true,
-        "yOffset": "write"
+        "requestAnimationFrame": true
       },
       "packages": {
         "gl-mat4": true,
@@ -6288,7 +6284,7 @@ module.exports = function createLogo (options_) {
   setAttribute(container, 'width', width + 'px')
   setAttribute(container, 'height', height + 'px')
 
-  function setLookAt(target) {
+  function setLookAt (target) {
     var bounds = container.getBoundingClientRect()
     mouse.x = 1.0 - 2.0 * (target.x - bounds.left) / bounds.width
     mouse.y = 1.0 - 2.0 * (target.y - bounds.top) / bounds.height
@@ -6485,8 +6481,8 @@ module.exports = function createLogo (options_) {
     }
   }
 
-  function stopAnimation() { shouldRender = false }
-  function startAnimation() { shouldRender = true }
+  function stopAnimation () { shouldRender = false }
+  function startAnimation () { shouldRender = true }
   function setFollowMouse (state) { followCursor = state }
   function setFollowMotion (state) { followMotion = state }
 
@@ -6495,30 +6491,29 @@ module.exports = function createLogo (options_) {
     if (followCursor) {
       setLookAt({
         x: ev.clientX,
-        y: ev.clientY,
+        y: ev.clientY
       })
       renderScene()
     }
   })
 
-  window.addEventListener('deviceorientation', function (ev) {
+  window.addEventListener('deviceorientation', function (event) {
     if (!shouldRender) { startAnimation() }
     if (followMotion) {
       // gamma: left to right
-      const leftToRight = event.gamma,
+      const leftToRight = event.gamma
       // beta: front back motion
-      frontToBack = event.beta,
+      const frontToBack = event.beta
       // x offset: needed to correct the intial position
-      xOffset = 200
+      const xOffset = 200
       // y offset: needed to correct the intial position
-      yOffset = -300
+      const yOffset = -300
       // acceleration
-      acceleration = 10
-
+      const acceleration = 10
 
       setLookAt({
         x: xOffset + leftToRight * acceleration,
-        y: yOffset + frontToBack * acceleration,
+        y: yOffset + frontToBack * acceleration
       })
       renderScene()
     }
@@ -6548,7 +6543,7 @@ module.exports = function createLogo (options_) {
     setFollowMouse: setFollowMouse,
     setFollowMotion: setFollowMotion,
     stopAnimation: stopAnimation,
-    startAnimation: startAnimation,
+    startAnimation: startAnimation
   }
 }
 

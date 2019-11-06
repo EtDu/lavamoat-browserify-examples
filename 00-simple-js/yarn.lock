@@ -1067,10 +1067,10 @@ merge-deep@^3.0.2:
     clone-deep "^0.2.4"
     kind-of "^3.0.2"
 
-metamask-logo@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/metamask-logo/-/metamask-logo-2.2.0.tgz#59bd13a32ec64265440bf847b084a9bdff314b68"
-  integrity sha512-OO+d9JKAO6l48FBEGWML9sSGRy/iro6udO/TzoHAlYULeKMDXnSLJzQhMYwGUaXFMKPCIgToRCKtdm5XsHZhyQ==
+metamask-logo@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/metamask-logo/-/metamask-logo-2.2.1.tgz#cd1edc8f2f5c756ed10de778cfecb29741b72cc8"
+  integrity sha512-huLxQs9lrUE/csIChgLAsz9JloVtUm9YwuvrWTL2JsIWx+t1FgrTKWWSifphryWIv/J07pfNvL5YJXKI3DA8fg==
   dependencies:
     gl-mat4 "1.1.4"
     gl-vec3 "1.0.3"
