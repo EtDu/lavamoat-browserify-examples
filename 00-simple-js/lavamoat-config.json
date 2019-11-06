@@ -1,0 +1,27 @@
+{
+  "resources": {
+    "<root>": {
+      "packages": {
+        "metamask-logo": true
+      }
+    },
+    "metamask-logo": {
+      "globals": {
+        "acceleration": "write",
+        "addEventListener": true,
+        "document.body.appendChild": true,
+        "document.createElementNS": true,
+        "event.beta": true,
+        "event.gamma": true,
+        "innerHeight": true,
+        "innerWidth": true,
+        "requestAnimationFrame": true,
+        "yOffset": "write"
+      },
+      "packages": {
+        "gl-mat4": true,
+        "gl-vec3": true
+      }
+    }
+  }
+}
