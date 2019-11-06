@@ -1,0 +1,3 @@
+# ignore node_modules in all examples
+node_modules
+*/node_modules
