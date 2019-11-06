@@ -26,7 +26,8 @@ When using the config autogeneration, `lavamoat-browserify` options are specifie
 
 ```js
 const lavamoatOpts = {
-  writeAutoConfig: './lavamoat-config.json',
+  config: './lavamoat-config.json',
+  writeAutoConfig: true,
 }
 ```
 

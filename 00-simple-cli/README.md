@@ -14,7 +14,7 @@ In this example the config autogeneration and build scripts use the browserify c
 
 ```json
 "scripts": {
-  "lavamoat": "browserify index.js --plugin [ lavamoat-browserify --writeAutoConfig ./lavamoat-config.json ] > /dev/null",
+  "lavamoat": "browserify index.js --plugin [ lavamoat-browserify --writeAutoConfig --config ./lavamoat-config.json ] > /dev/null",
   "start": "browserify index.js --plugin [ lavamoat-browserify --config ./lavamoat-config.json ] > bundle.js && serve ."
 },
 ```
@@ -27,11 +27,12 @@ The scripts `"lavamoat"` performs our config autogeneration. This task should on
 browserify index.js \
   --plugin [ \
     lavamoat-browserify \
-    --writeAutoConfig ./lavamoat-config.json \
+    --writeAutoConfig \
+    --config ./lavamoat-config.json \
   ] > /dev/null
 ```
 
-Here we are specifying the `lavamoat-browserify` plugin and providing it with the argument `--writeAutoConfig`. This tells the plugin to parse each module and generate a config file, writing it at `./lavamoat-config.json`. We ignore the bundle output.
+Here we are specifying the `lavamoat-browserify` plugin and providing it with the flag `--writeAutoConfig`. This tells the plugin to parse each module and generate a config file, writing it at `./lavamoat-config.json`, as specified by `--config`. We ignore the bundle output.
 
 ##### build
 

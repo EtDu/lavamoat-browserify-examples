@@ -4146,7 +4146,29 @@ function makePrepareRealmGlobalFromConfig () {
 })()()
     const lavamoatConfig = (function(){
   // START of injected code from lavamoatConfig
-  return {}
+  return {
+  "resources": {
+    "<root>": {
+      "packages": {
+        "metamask-logo": true
+      }
+    },
+    "metamask-logo": {
+      "globals": {
+        "addEventListener": true,
+        "document.body.appendChild": true,
+        "document.createElementNS": true,
+        "innerHeight": true,
+        "innerWidth": true,
+        "requestAnimationFrame": true
+      },
+      "packages": {
+        "gl-mat4": true,
+        "gl-vec3": true
+      }
+    }
+  }
+}
   // END of injected code from lavamoatConfig
     })()
 
