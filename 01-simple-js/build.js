@@ -1,23 +1,27 @@
 const fs = require('fs')
 const browserify = require('browserify')
 
-// configure LavaMoat
-const lavamoatOpts = {
-  config: './lavamoat-config.json'
-}
+// Autoconfig option
+let autoConfigEnabled = process.env.AUTOCONFIG
+// Initialize LavaMoat configuration object
+let lavamoatOpts = {}
 
-// enable config autogen if specified
-if (process.env.AUTOCONFIG) {
+// Enable config autogen if specified, otherwise set the config to the default path
+if (autoConfigEnabled) {
   lavamoatOpts.writeAutoConfig = true
+} else {
+  lavamoatOpts.config = './lavamoat/lavamoat-config.json'
 }
 
-// configure browserify
+// Configure Browserify
 const bundler = browserify(['./index.js'], {
   plugin: [
     ['lavamoat-browserify', lavamoatOpts]
   ]
 })
 
-// bundle and write to disk
-bundler.bundle()
-  .pipe(fs.createWriteStream('./bundle.js'))
+// If running without writeAutoConfig, bundle and write to disk
+if (!autoConfigEnabled) {
+  bundler.bundle()
+    .pipe(fs.createWriteStream('./bundle.js'))
+}
