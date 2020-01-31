@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "browserify": "^16.5.0",
-    "lavamoat-browserify": "^3.0.0",
+    "lavamoat-browserify": "LavaMoat/lavamoat-browserify#0edacaf37bcfd864194114fe5f748fc2a622e118",
     "serve": "^11.2.0"
   },
   "scripts": {
