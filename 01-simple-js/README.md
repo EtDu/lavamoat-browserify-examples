@@ -1,4 +1,4 @@
-### instructions
+### Quick Start
 
 ```bash
 yarn
@@ -6,12 +6,11 @@ yarn lavamoat
 yarn start
 ```
 
+### Explanation
 
-### explanation
+In this example, the config autogeneration and build scripts use the Browserify JS API and live in `build.js`. For convenience, the npm scripts `"lavamoat"` and `"start"` call `build.js`, using an environment variable to specify when to automatically generate the config:
 
-In this example the config autogeneration and build scripts use the browserify js api and live in `build.js`. For convenience, the npm scripts `"lavamoat"` and `"start"` call `build.js`, using an environment variable to specify when to automatically generate the config.
-
-**note: the whitespace in the plugin field is important**
+**Note: the whitespace in the plugin field is important**
 
 ```json
 "scripts": {
@@ -20,27 +19,55 @@ In this example the config autogeneration and build scripts use the browserify j
 },
 ```
 
-##### config autogeneration
+#### Config Autogeneration
 
-When using the config autogeneration, `lavamoat-browserify` options are specified as
+**`lavamoat` script:**
+
+When using the config autogeneration, `lavamoat-browserify` options are specified as:
 
 ```js
 const lavamoatOpts = {
-  config: './lavamoat-config.json',
   writeAutoConfig: true,
 }
 ```
 
-Here we are specifying the `lavamoat-browserify` plugin and providing it with the option `writeAutoConfig`. This tells the plugin to parse each module and generate a config file, writing it at `./lavamoat-config.json`. Ignore the bundle output.
+which is used as a plugin option for running the Browserify build:
 
-##### build
+```js
+const bundler = browserify(['./index.js'], {
+  plugin: [
+    ['lavamoat-browserify', lavamoatOpts]
+  ]
+})
+```
 
-The scripts "start" performs our build with browserify, and starts a static asset server.
+Here we are specifying the `lavamoat-browserify` plugin and providing it with the option `writeAutoConfig: true`. This tells the plugin to parse each module and generate a config file, writing it at the default path `./lavamoat/lavamoat-config.json`. An additional `lavamoat-config-override.json` is created under the same directory. The bundle output is ignored. 
+
+#### Building
+
+**`start` script:**
+
+When building based on a specified existing config file, `lavamoat-browserify` options are specified as:
 
 ```js
 const lavamoatOpts = {
-  config: './lavamoat-config.json',
+  config: './lavamoat/lavamoat-config.json',
 }
 ```
 
-Here we are specifying the `lavamoat-browserify` plugin and providing it with the argument `--config`. This tells the plugin to build, using the config at `./lavamoat-config.json`. We save the bundle output in `bundle.js`. Since `writeAutoConfig` is not specified, it skips parsing the module content.
+which is used as a plugin option for running the Browserify build and saving it to a file:
+
+```js
+const bundler = browserify(['./index.js'], {
+  plugin: [
+    ['lavamoat-browserify', lavamoatOpts]
+  ]
+})
+
+bundler.bundle()
+  .pipe(fs.createWriteStream('./bundle.js'))
+```
+
+Here we are specifying the `lavamoat-browserify` plugin and providing it with the option `config`. This tells the plugin to build, using the config at `./lavamoat/lavamoat-config.json`. Outputs and saves the bundle to `bundle.js`. Since `writeAutoConfig` is not specified, it skips parsing the module content. the script also starts a static asset server at `http://localhost:5000`.
+
+

@@ -44,5 +44,5 @@ browserify index.js \
   ] > bundle.js && serve .
 ```
 
-`start` - Runs Browserify with the `lavamoat-browserify` plugin, using the specified `--config` at path `./lavamoat/lavamoat-config.json`. Outputs a LavaMoat protected bundle to `bundle.js`. Starts a static asset server at `http://localhost:5000`. Since `--writeAutoConfig` is not specified, it skips parsing the module content.
+`start` - Runs Browserify with the `lavamoat-browserify` plugin, using the specified `--config` at path `./lavamoat/lavamoat-config.json`. Outputs a LavaMoat protected bundle to `bundle.js`. Since `--writeAutoConfig` is not specified, it skips parsing the module content. Also starts a static asset server at `http://localhost:5000`.
 
