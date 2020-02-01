@@ -21,7 +21,5 @@ const bundler = browserify(['./index.js'], {
 })
 
 // If running without writeAutoConfig, bundle and write to disk
-if (!autoConfigEnabled) {
-  bundler.bundle()
-    .pipe(fs.createWriteStream('./bundle.js'))
-}
+bundler.bundle()
+  .pipe(fs.createWriteStream('./bundle.js'))
