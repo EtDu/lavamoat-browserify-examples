@@ -5,7 +5,7 @@
     "lavamoat-browserify": "LavaMoat/lavamoat-browserify#0edacaf37bcfd864194114fe5f748fc2a622e118"
   },
   "scripts": {
-    "lavamoat-autoconfig": "AUTOCONFIG=1 node ./build.js",
+    "lavamoat": "AUTOCONFIG=1 node ./build.js",
     "start": "node ./build.js",
     "start-watch": "node ./build.js watch"
   },
