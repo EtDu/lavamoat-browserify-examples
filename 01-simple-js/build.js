@@ -26,7 +26,8 @@ if (autoConfigEnabled) {
       port: 8000,
       browserify: {
         plugin: [
-          [lavamoat, lavamoatOpts]
+          [lavamoat, lavamoatOpts],
+          [bundler => bundler.bundle().pipe(fs.createWriteStream('./bundle.js'))]
         ]
       }
     })
@@ -36,7 +37,8 @@ if (autoConfigEnabled) {
       port: 8000,
       browserify: {
         plugin: [
-          [lavamoat, lavamoatOpts]
+          [lavamoat, lavamoatOpts],
+          [bundler => bundler.bundle().pipe(fs.createWriteStream('./bundle.js'))]
         ]
       }
     })
