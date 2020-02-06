@@ -1,12 +1,13 @@
 {
   "devDependencies": {
     "browserify": "^16.5.0",
-    "lavamoat-browserify": "LavaMoat/lavamoat-browserify#0edacaf37bcfd864194114fe5f748fc2a622e118",
-    "serve": "^11.2.0"
+    "budo": "^11.6.3",
+    "lavamoat-browserify": "LavaMoat/lavamoat-browserify#0edacaf37bcfd864194114fe5f748fc2a622e118"
   },
   "scripts": {
-    "lavamoat": "AUTOCONFIG=1 node ./build.js",
-    "start": "node ./build.js && serve ."
+    "lavamoat-autoconfig": "AUTOCONFIG=1 node ./build.js",
+    "start": "node ./build.js",
+    "start-watch": "node ./build.js watch"
   },
   "dependencies": {
     "metamask-logo": "^2.2.1"
