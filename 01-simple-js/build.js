@@ -31,7 +31,15 @@ if (autoConfigEnabled) {
       }
     })
   } else {
-    bundle()
+    budo('./index.js', {
+      stream: process.stdout,
+      port: 8000,
+      browserify: {
+        plugin: [
+          [lavamoat, lavamoatOpts]
+        ]
+      }
+    })
   }
 }
 
