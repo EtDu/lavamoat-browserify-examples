@@ -7,7 +7,7 @@
   "scripts": {
     "lavamoat": "AUTOCONFIG=1 node ./build.js",
     "start": "node ./build.js",
-    "start-watch": "node ./build.js watch"
+    "start-live": "node ./live.js"
   },
   "dependencies": {
     "metamask-logo": "^2.2.1"

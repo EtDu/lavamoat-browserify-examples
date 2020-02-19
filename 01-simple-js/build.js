@@ -18,31 +18,17 @@ if (autoConfigEnabled) {
 } else {
   lavamoatOpts.config = './lavamoat/lavamoat-config.json'
   
-  // If 'watch' option is passed through, enable hot reloading when the override config file changes 
-  if (2 in process.argv) {
-    budo('./index.js', {
-      live: true,
-      stream: process.stdout,
-      port: 8000,
-      browserify: {
-        plugin: [
-          [lavamoat, lavamoatOpts],
-          [bundler => bundler.bundle().pipe(fs.createWriteStream('./bundle.js'))]
-        ]
-      }
-    })
-  } else {
-    budo('./index.js', {
-      stream: process.stdout,
-      port: 8000,
-      browserify: {
-        plugin: [
-          [lavamoat, lavamoatOpts],
-          [bundler => bundler.bundle().pipe(fs.createWriteStream('./bundle.js'))]
-        ]
-      }
-    })
-  }
+  budo('./index.js', {
+    stream: process.stdout,
+    port: 8000,
+    browserify: {
+      plugin: [
+        [lavamoat, lavamoatOpts],
+        [bundler => bundler.bundle().pipe(fs.createWriteStream('./bundle.js'))]
+      ]
+    }
+  })
+
 }
 
 //Helper bundle function
