@@ -1,4 +1,6 @@
 const ModelViewer = require('metamask-logo')
+//Hack to get watchify to recognize the file 
+require('./lavamoat/lavamoat-config-override.json')
 
 // To render with fixed dimensions:
 const viewer = ModelViewer({

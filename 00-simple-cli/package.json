@@ -2,11 +2,15 @@
   "devDependencies": {
     "browserify": "^16.5.0",
     "budo": "^11.6.3",
-    "lavamoat-browserify": "^5.0.0"
+    "concurrently": "^5.1.0",
+    "lavamoat-browserify": "^5.0.0",
+    "serve": "^11.3.0",
+    "watchify": "^3.11.1"
   },
   "scripts": {
-    "lavamoat": "browserify index.js --plugin [ lavamoat-browserify --writeAutoConfig --config ./lavamoat-config.json ] > /dev/null",
-    "start": "browserify index.js --plugin [ lavamoat-browserify --config ./lavamoat-config.json ] > bundle.js && serve ."
+    "lavamoat": "browserify index.js --plugin [ lavamoat-browserify --writeAutoConfig ] > /dev/null",
+    "start": "browserify index.js --plugin [ lavamoat-browserify --config ./lavamoat/lavamoat-config.json ] > bundle.js && serve",
+    "start-live": "concurrently \"watchify index.js --outfile bundle.js --plugin [ lavamoat-browserify --config ./lavamoat/lavamoat-config.json ]\" \"serve\""
   },
   "dependencies": {
     "metamask-logo": "^2.2.1"
