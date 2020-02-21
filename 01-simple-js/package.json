@@ -2,7 +2,7 @@
   "devDependencies": {
     "browserify": "^16.5.0",
     "budo": "^11.6.3",
-    "lavamoat-browserify": "LavaMoat/lavamoat-browserify#cb0e289b05bd556796f75237907ec37fe5edde4a"
+    "lavamoat-browserify": "^5.0.0"
   },
   "scripts": {
     "lavamoat": "AUTOCONFIG=1 node ./build.js",
