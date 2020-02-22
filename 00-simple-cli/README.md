@@ -8,19 +8,25 @@ yarn start
 
 ### Explanation
 
-In this example the config autogeneration and build scripts use the Browserify cli and live as scripts in `package.json`: 
+In this example, the config autogeneration and build setup relies on the scripts in `package.json`. The scripts use [Browserify](https://github.com/browserify/browserify) CLI, [Watchify](https://www.npmjs.com/package/watchify) CLI & [Serve](https://www.npmjs.com/package/serve) development server.
+
+#### Scripts
 
 **Note: the whitespace in the plugin field is important**
 
 ```json
 "scripts": {
-  "lavamoat": "browserify index.js --plugin [ lavamoat-browserify --writeAutoConfig ] > /dev/null",
-  "start": "browserify index.js --plugin [ lavamoat-browserify --config ./lavamoat/lavamoat-config.json ] > bundle.js && serve ."
+    "lavamoat": "browserify index.js --plugin [ lavamoat-browserify --writeAutoConfig ] > /dev/null",
+    "start": "browserify index.js --plugin [ lavamoat-browserify --config ./lavamoat/lavamoat-config.json ] > bundle.js && serve",
+    "start-live": "concurrently \"watchify index.js --outfile bundle.js --plugin [ lavamoat-browserify --config ./lavamoat/lavamoat-config.json ]\" \"serve\""
 },
 ```
+
 #### Config Autogeneration
 
-`lavamoat` script:
+**`yarn lavamoat`**
+
+Start by having Lavamoat automatically build and generate a configuration file. 
 
 ```bash
 browserify index.js \
@@ -34,7 +40,9 @@ browserify index.js \
 
 #### Building
 
-`start` script:
+**`yarn start`**
+
+Next, create a new Browserify build with Lavamoat using the config generated from before.
 
 ```bash
 browserify index.js \
@@ -44,5 +52,26 @@ browserify index.js \
   ] > bundle.js && serve .
 ```
 
-`start` - Runs Browserify with the `lavamoat-browserify` plugin, using the specified `--config` at path `./lavamoat/lavamoat-config.json`. Outputs a LavaMoat protected bundle to `bundle.js`. Since `--writeAutoConfig` is not specified, it skips parsing the module content. Also starts a static asset server at `http://localhost:5000`.
+`start` - Runs Browserify with the `lavamoat-browserify` plugin with the `--config` flag, used to specify the config at path `./lavamoat/lavamoat-config.json`. Outputs a LavaMoat protected bundle to `bundle.js`. Since `--writeAutoConfig` is not specified, it skips parsing the module content. Launches a static asset server that includes the bundle.
 
+#### Building With Live Reload
+
+**`yarn start-live`**
+
+Alternatively, create a new Browserify build with Lavamoat using the config generated from before with live reload enabled.
+
+```bash
+concurrently \
+  \"watchify index.js \
+  --outfile bundle.js \
+  --plugin [ \
+    lavamoat-browserify \
+    --config ./lavamoat/lavamoat-config.json \
+  ]\" \"serve\" 
+```
+
+`concurrently` runs two processes concurrently, as per the name. The first process runs Watchify with Lavamoat and outputs the bundle to `bundle.js`. This triggers a re-bundle everytime `lavamoat-config-override.json` is modified. The next process simply runs a development server that requires the outputted bundle. 
+
+**IMPORTANT**
+
+`require("./lavamoat/lavamoat-config-override.json")` exists in `index.js` so that Watchify watches the override config and rebundles on changes accordingly. Watchify only considers files which are apart of the `require` tree in `index.js`. 

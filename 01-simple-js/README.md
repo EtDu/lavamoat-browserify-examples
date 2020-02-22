@@ -8,7 +8,7 @@ yarn start
 
 ### Explanation
 
-In this example, the config autogeneration and build scripts use the Browserify JS API & Budo dev server in `build.js` and `live.js`.
+In this example, the config autogeneration and build scripts use the [Browserify](https://github.com/browserify/browserify) JS API & [Budo](https://github.com/mattdesl/budo) development server in `build.js` and `live.js`.
 
 #### Scripts:
 
